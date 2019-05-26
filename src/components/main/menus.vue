@@ -4,11 +4,15 @@
 
 <script>
 // Invisible component that reactively handles flyout and context menus.
+// All changes and modifications trigger redraw of menu and events.
+// Modify either menu with .push() or other array methods and see results instantly
+
 // Access this component anywhere via this.app.menus (this.$root.$children[0].menus)
 
 export default {
   name: "menus",
   data: () => ({
+    // this.app.menus.context
     context: {
       menu: [
         {
@@ -28,6 +32,7 @@ export default {
         }
       ]
     },
+    // this.app.menus.context
     flyout: {
       menu: [
         {
@@ -47,6 +52,7 @@ export default {
     contextMenu() {
       return this.context.menu;
     },
+    // Flyout menu converts to XML from reactive JSON in data() above
     flyoutMenu() {
       let str = `<Menu>`;
       this.flyout.menu.forEach(item => {
@@ -72,22 +78,26 @@ export default {
     this.app.menus = this;
   },
   methods: {
-    init() {
-      this.setContextMenu();
-      this.setFlyoutMenu();
+    contextMenuClicked(id) {
+      // Callback to handle any context menu event
+      if (id == "refresh") {
+        location.reload();
+      } else if (id == "localhost") {
+        cep.util.openURLInDefaultBrowser(this.app.identity.localhost);
+      }
+    },
+    flyoutMenuClicked(evt) {
+      // Callback to handle any flyout menu event
+      const id = evt.data.menuId;
+      if (id == "refresh") {
+        location.reload();
+      }
     },
     setContextMenu() {
       this.app.csInterface.setContextMenuByJSON(
         JSON.stringify(this.context),
         this.contextMenuClicked
       );
-    },
-    contextMenuClicked(id) {
-      if (id == "refresh") {
-        location.reload();
-      } else if (id == "localhost") {
-        cep.util.openURLInDefaultBrowser(this.app.identity.localhost);
-      }
     },
     setFlyoutMenu() {
       this.app.csInterface.setPanelFlyoutMenu(this.flyoutMenu);
@@ -96,11 +106,9 @@ export default {
         this.flyoutMenuClicked
       );
     },
-    flyoutMenuClicked(evt) {
-      const id = evt.data.menuId;
-      if (id == "refresh") {
-        location.reload();
-      }
+    init() {
+      this.setContextMenu();
+      this.setFlyoutMenu();
     }
   }
 };

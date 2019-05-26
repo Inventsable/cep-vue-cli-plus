@@ -22,23 +22,25 @@ yo cep-vue-cli-plus
 
 ## Generated panel:
 
-:file_folder: <span style="font-size: 20px;">your-panel-name</span>
-<br>&nbsp;&nbsp;|\_\_&nbsp;:file_folder: <span style="font-size: 20px;">CSXS</span>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: <span style="font-size: 20px;">manifest.xml</span>
-<br>&nbsp;&nbsp;|\_\_&nbsp;:file_folder: <span style="font-size: 20px;">public</span>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: <span style="font-size: 20px;">CSInterface.js</span>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: <span style="font-size: 20px;">index.html (**Production:** used with `npm run build`)</span>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: <span style="font-size: 20px;">index-dev.html (**Development:** used with `npm run serve`)</span>
-<br>&nbsp;&nbsp;|\_\_&nbsp;:file_folder: <span style="font-size: 20px;">src</span>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:file_folder: <span style="font-size: 20px;">main (utility components)</span>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:file_folder: <span style="font-size: 20px;">host (.jsx and scripting files)</span>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:file_folder: <span style="font-size: 20px;">plugins (Vue-CLI-3 plugins)</span>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:file_folder: <span style="font-size: 20px;">views (Vue Router pages)</span>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: <span style="font-size: 20px;">App.vue</span>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: <span style="font-size: 20px;">main.js</span>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: <span style="font-size: 20px;">router.js</span>
-<br>&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: <span style="font-size: 20px;">.debug</span>
-<br>&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: <span style="font-size: 20px;">.gitignore</span>
-<br>&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: <span style="font-size: 20px;">package.json</span>
-<br>&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: <span style="font-size: 20px;">package-lock.json</span>
-<br>&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: <span style="font-size: 20px;">vue.config.js (Avoids `file not found` errors in `index.html` after `npm run build`)</span>
+:file_folder: your-panel-name
+<br>&nbsp;&nbsp;|\_\_&nbsp;:file_folder: CSXS
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: manifest.xml
+<br>&nbsp;&nbsp;|\_\_&nbsp;:file_folder: public
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: CSInterface.js
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: index.html (**Production:** used with `npm run build`)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: index-dev.html (**Development:** used with `npm run serve`)
+<br>&nbsp;&nbsp;|\_\_&nbsp;:file_folder: src
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:file_folder: <a href="utility">main (utility components)</a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:file_folder: host (.jsx and scripting files)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:file_folder: plugins (Vue-CLI-3 plugins)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:file_folder: views (Vue Router pages)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: App.vue
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: main.js
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: router.js
+<br>&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: .debug
+<br>&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: .gitignore
+<br>&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: package.json
+<br>&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: package-lock.json
+<br>&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: vue.config.js (Avoids `file not found` errors in `index.html` after `npm run build`)
+
+<h1><a id="user-content-testthing" class="anchor" aria-hidden="true" href="#testthing"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>test.thing</code></h1>

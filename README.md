@@ -20,7 +20,7 @@ yo cep-vue-cli-plus
 - Full [Material Design Icon](https://materialdesignicons.com/) support
 - Various personal utility components that handle context/flyout menus, launching CEF debug, matching all host app styles and more
 
-:file_folder: Root
-<br>&nbsp;&nbsp;&nbsp;&nbsp;:file_folder: CSXS
-<br>&nbsp;&nbsp;&nbsp;&nbsp;:file_folder: public
-<br>&nbsp;&nbsp;&nbsp;&nbsp;:file_folder: src
+:file_folder: root (your project name)
+<br>&nbsp;&nbsp;|\_\_:file_folder: CSXS
+<br>&nbsp;&nbsp;|\_\_:file_folder: public
+<br>&nbsp;&nbsp;|\_\_:file_folder: src

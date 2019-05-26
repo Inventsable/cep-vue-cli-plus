@@ -9,6 +9,8 @@ npm install generator-cep-vue-cli
 yo cep-vue-cli-plus
 ```
 
+:file_folder:
+
 ```
 :file_folder:Root
   |__

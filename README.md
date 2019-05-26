@@ -24,6 +24,6 @@ yo cep-vue-cli-plus
 
 :file_folder: root (your project name)
 <br>&nbsp;&nbsp;|\_\_:file_folder: CSXS
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_:page_facing_up: manifest.xml
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_:page_facing_up: manifest.xml
 <br>&nbsp;&nbsp;|\_\_:file_folder: public
 <br>&nbsp;&nbsp;|\_\_:file_folder: src

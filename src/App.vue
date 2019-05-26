@@ -42,7 +42,6 @@ export default {
     }
   },
   data: () => ({
-    macOS: false,
     csInterface: null,
     identity: null,
     stylizer: null,
@@ -61,12 +60,6 @@ export default {
   }),
   mounted() {
     console.clear();
-    this.macOS =
-      navigator.platform.indexOf("Win") > -1
-        ? false
-        : navigator.platform.indexOf("Mac") > -1
-        ? true
-        : false;
     this.csInterface = new CSInterface();
     this.csInterface.addEventListener("console", this.consoler);
 

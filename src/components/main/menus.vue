@@ -60,6 +60,7 @@ export default {
     }
   },
   watch: {
+    // Any updates to menu will trigger CEP to reset it and callback events
     contextMenu(menu) {
       this.setContextMenu();
     },

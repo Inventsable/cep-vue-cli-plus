@@ -94,11 +94,17 @@ export default {
         : null;
     },
     extName() {
-      return this.activeExt.name ? this.activeExt.name : null;
+      return this.activeExt ? this.activeExt.name : null;
     }
   },
   mounted() {
     this.app.identity = this;
+    this.OS =
+      navigator.platform.indexOf("Win") > -1
+        ? "Windows"
+        : navigator.platform.indexOf("Mac") > -1
+        ? "Mac"
+        : "Unknown";
   },
   methods: {
     init() {
@@ -106,6 +112,7 @@ export default {
       this.app.identity = this;
       console.log("Identity mounted:");
       console.log(this.activeExt);
+      console.log(this.getAllData());
     },
     checkHost() {
       this.exts.forEach(ext => {
@@ -118,6 +125,45 @@ export default {
       });
       const vr = this.getVersion(target);
       console.log(`${target.windowType}: ${target.name} v${vr}`);
+    },
+    getAllData() {
+      return {
+        mode: this.isDev ? "Developer" : "Production",
+        root: this.root,
+        cep: this.cepVersion,
+        production: !this.isDev,
+        extension: {
+          name: this.extName,
+          version: this.extVersion,
+          height: {
+            value: this.activeExt.height,
+            minmax: [this.activeExt.minHeight, this.activeExt.maxHeight],
+            min: this.activeExt.minHeight,
+            max: this.activeExt.maxHeight
+          },
+          width: {
+            value: this.activeExt.width,
+            minmax: [this.activeExt.minWidth, this.activeExt.maxWidth],
+            min: this.activeExt.minWidth,
+            max: this.activeExt.maxWidth
+          },
+          id: this.activeExt.id,
+          windowType: this.activeExt.windowType
+        },
+        OS: this.OS,
+        user: {
+          id: this.userId,
+          env: `${this.appName} ${this.appVersion}`
+        },
+        userAgent: this.userAgent,
+
+        localhost: this.localhost,
+        app: {
+          name: this.appName,
+          locale: this.appLocale,
+          version: this.appVersion
+        }
+      };
     },
     getVersion(ext) {
       if (this.isMounted) {

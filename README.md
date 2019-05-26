@@ -1,29 +1,16 @@
 # cep-vue-cli-plus
 
-## Project setup
-```
-npm install
+## Boilerplate to be used for upcoming Yeoman `generator-cep-vue-cli`
+
+```bash
+# usage:
+npm install generator-cep-vue-cli
+
+yo cep-vue-cli-plus
 ```
 
-### Compiles and hot-reloads for development
 ```
-npm run serve
-```
+:file_folder:Root
+  |__
 
-### Compiles and minifies for production
 ```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

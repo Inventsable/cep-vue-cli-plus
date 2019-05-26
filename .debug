@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionList>
+    <Extension Id="com.namehere.panel">
+        <HostList>
+            <Host Name="ILST" Port="8041"/>
+            <Host Name="PHXS" Port="8042"/>
+            <!-- <Host Name="AEFT" Port="2039"/> -->
+        </HostList>
+    </Extension>
+</ExtensionList>

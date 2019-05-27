@@ -25,6 +25,10 @@ yo cep-vue-cli
 - Full [Material Design Icon](https://materialdesignicons.com/) support
 - Various personal utility components that handle context/flyout menus, launching CEF debug, common errors with Webpack, matching all host app styles and more
 
+## [Never used Node, Vue CLI-3 or Webpack?](#Getting-Started)
+
+---
+
 ## Filetree for panel:
 
 Base panel results in clean and simple Single File Component infrastructure. `CSInterface` exists on the level of `App.vue` and is accessible anywhere via `this.app.csInterface` (`this.$root.$children[0].csInterface`).
@@ -51,6 +55,8 @@ Base panel results in clean and simple Single File Component infrastructure. `CS
 <br>&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: package.json
 <br>&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: package-lock.json
 <br>&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: vue.config.js (Avoids `file not found` errors in `index.html` after `npm run build`)
+
+---
 
 ## Contexts
 
@@ -84,6 +90,8 @@ Base panel results in clean and simple Single File Component infrastructure. `CS
 
 > Panel is now ready to sign and certify or be used on any client
 
+---
+
 ## Components
 
 :file_folder: ./src/components
@@ -113,6 +121,8 @@ Base panel results in clean and simple Single File Component infrastructure. `CS
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: version.vue
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Displays current version of extension as a footer at bottom of panel
 
+---
+
 ## Scripting
 
 :file_folder: ./src/host
@@ -138,3 +148,75 @@ Base panel results in clean and simple Single File Component infrastructure. `CS
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: host.ts
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: host.jsx
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: tsconfig.json
+
+---
+
+## Getting Started
+
+You don't need to understand Node, npm packages, Vue CLI-3 or webpack to use these templates, it's a good starting point to avoid all the pitfalls in having your own functional panel using them.
+
+I was very overwhelmed when I first jumped to Single File Components rather than using Vue's CDN and writing everything in one .js file. Afterall, this looks gigantic and there are a ton of cryptic files, but after some practice and troubleshooting how to setup the environment, it's incredibly powerful to use and can be much simpler than gigantic .js files with 10k+ worth of code!
+
+For the most part, you don't need to alter or modify any file/folder not shown below:
+
+:file_folder: your-panel-name
+<br>&nbsp;&nbsp;|\_\_&nbsp;:file_folder: CSXS
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: manifest.xml
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Changes have been made to include node context. See the README in `./CSXS`
+<br>&nbsp;&nbsp;|\_\_&nbsp;:file_folder: public
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Any files/folders contained here will be automatically bundled in `./dist/` after `npm run build`
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • You can include any assets (.pngs, scripts, etc) here or `src` for use in the panel
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: CSInterface.js
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: index.html (**Production:** used with `npm run build`)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: index-dev.html (**Development:** used with `npm run serve`)
+<br>&nbsp;&nbsp;|\_\_&nbsp;:file_folder: src
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • This is your development folder, you can place any number of components or files here
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:file_folder: components
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: HelloWorld.vue
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • This is a placeholder component for the main content of your panel
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\_\_&nbsp;:page_facing_up: App.vue
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • This is the main entry point of your panel
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • You cannot change this from a `<div>` of `#app`. Add your own components inside it instead of modifying it directly.
+
+---
+
+### When developing:
+
+```bash
+# Use this command inside the root of your project to launch the dev server
+npm run serve
+
+# This enables hot-reloading so your panel updates in real-time as you make changes to any included file.
+
+# Ensure that index-dev.html is your resource file inside ./CSXS/manifest.xml and relaunch extension
+```
+
+### To build:
+
+```bash
+# Use this command to create/overwrite the ./dist/ directory with a production build of your panel:
+npm run build
+
+# You must manually change to index.html in your ./CSXS/manifest.xml file and relaunch extension
+
+```
+
+## Common errors:
+
+### Panel is not updating
+
+- Adding or reorganizing components may cause hot reloading to fail. Many times you will be warned of this in `CEF debug`'s console, fix this by hitting `^C` in your active terminal to `Terminae batch job`, then run `npm run serve` once more and refresh the panel.
+
+### Page Not Found (cannot find page at `localhost:####` displays in panel)
+
+- Must run `npm run serve` and have the `App running at: -Local / -Network` message in your terminal
+- If you launched the app before running `npm run serve`, click the localhost URL inside the panel's error message
+
+### Panel is white or blank
+
+- Check your CEF client via `localhost:####` for an error thrown in your code which breaks the panel's rendering
+- If in `Production` context and receiving `404` errors in your `index.html`, ensure your `dist/index.html`'s script tags have `src` attributes such as `src=./filepath` or `src=filepath` instead of `src=/filepath` (leading slash is default but will break, should be fixed via `vue.config.js`)
+
+### Sign/Certify is failing
+
+- Including hidden files and repositories in your ZXP/ZIP will cause a misleading error message. Be sure to delete hidden items such as `node_modules/`, `.git/`, and any other hidden files/folders prior to your sign/certify.

@@ -4,8 +4,7 @@
     <Extension Id="com.namehere.panel" Version="1.0.0" />
   </ExtensionList>
   <ExecutionEnvironment>
-    <HostList>
-      hostlisthere
+    <HostList>hostlisthere
     </HostList>
     <LocaleList>
       <Locale Code="All" />

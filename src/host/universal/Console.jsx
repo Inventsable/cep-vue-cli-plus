@@ -1,4 +1,4 @@
-JSXEvent('Initializing console.log() for .jsx files', 'console');
+JSXEvent('Host console is online', 'console');
 
 var console = {
   log: function(data) {
@@ -6,7 +6,15 @@ var console = {
   }
 };
 
-// thanks Davide Barranca
+function runScript(path) {
+  try {
+    $.evalFile(path);
+  } catch (e) {
+    JSXEvent(e.name + ',' + e.line + ',' + e + ',' + e.message, 'console');
+  }
+}
+
+// Thanks Davide Barranca
 function JSXEvent(payload, eventType) {
   try {
     var xLib = new ExternalObject('lib:PlugPlugExternalObject');
@@ -20,4 +28,25 @@ function JSXEvent(payload, eventType) {
     eventObj.dispatch();
   }
   return;
+}
+
+/// https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? '0' + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+  return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      }
+    : null;
 }

@@ -17,8 +17,14 @@ export default {
     },
     root() {
       return this.isMounted
-        ? this.app.csInterface.getSystemPath(SystemPath.EXTENSION)
+        ? decodeURI(window.__adobe_cep__.getSystemPath("extension")).replace(
+            /file\:\/{1,}/,
+            ""
+          )
         : null;
+      // return this.isMounted
+      //   ? this.app.csInterface.getSystemPath(SystemPath.EXTENSION)
+      //   : null;
     },
     localhost() {
       if (this.isMounted) {
@@ -45,7 +51,7 @@ export default {
     },
     appName() {
       return this.isMounted
-        ? this.app.csInterface.hostEnvironment.appName
+        ? JSON.parse(window.__adobe_cep__.getHostEnvironment()).appName
         : null;
     },
     appLocale() {
@@ -59,9 +65,12 @@ export default {
         : null;
     },
     userAgent() {
-      return this.isMounted
-        ? this.app.csInterface.getOSInformation("--user-agent")
-        : null;
+      return this.isMounted;
+      navigator.platform.indexOf("Win") > -1
+        ? "Windows"
+        : navigator.platform.indexOf("Mac") > -1
+        ? "Mac"
+        : "Unknown";
     },
     cepVersion() {
       return this.isMounted
@@ -98,21 +107,19 @@ export default {
     }
   },
   mounted() {
-    this.app.identity = this;
+    // this.app.identity = this;
     this.OS =
       navigator.platform.indexOf("Win") > -1
         ? "Windows"
         : navigator.platform.indexOf("Mac") > -1
         ? "Mac"
         : "Unknown";
+    this.app.identity = this;
+    this.init();
   },
   methods: {
     init() {
       this.isMounted = true;
-      this.app.identity = this;
-      console.log("Identity mounted:");
-      console.log(this.activeExt);
-      console.log(this.getAllData());
     },
     checkHost() {
       this.exts.forEach(ext => {
@@ -156,7 +163,6 @@ export default {
           env: `${this.appName} ${this.appVersion}`
         },
         userAgent: this.userAgent,
-
         localhost: this.localhost,
         app: {
           name: this.appName,

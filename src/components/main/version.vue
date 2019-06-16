@@ -5,18 +5,9 @@
 <script>
 export default {
   name: "version",
-  data: () => ({
-    isMounted: true
-  }),
-  mounted() {
-    this.isMounted = true;
-  },
   computed: {
     app() {
       return this.$root.$children[0];
-    },
-    isDev() {
-      return this.app.identity ? this.app.identity.isDev : false;
     },
     version() {
       return this.app.identity ? this.app.identity.extVersion : null;

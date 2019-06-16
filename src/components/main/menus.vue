@@ -1,4 +1,5 @@
 <template>
+  <!-- No need for HTML in this component -->
   <div></div>
 </template>
 
@@ -8,9 +9,8 @@
 // Modify either menu with .push() or other array methods and see results instantly
 
 // Access this component anywhere via this.app.menus (this.$root.$children[0].menus)
-
 export default {
-  name: "menus",
+  name: "adobe-menus",
   data: () => ({
     // this.app.menus.context
     context: {
@@ -32,7 +32,7 @@ export default {
         }
       ]
     },
-    // this.app.menus.context
+    // this.app.menus.flyout
     flyout: {
       menu: [
         {
@@ -63,6 +63,21 @@ export default {
         else str += `<MenuItem Label="---" />`;
       });
       return (str += `</Menu>`);
+    },
+    // Retrieve localhost without use of CSInterface
+    localhost() {
+      const debug = window.cep.fs.readFile(
+        `${decodeURI(window.__adobe_cep__.getSystemPath("extension")).replace(
+          /file\:\/{1,}/,
+          ""
+        )}/.debug`
+      );
+      const port = new RegExp(
+        `\\<Host\\sName\\=\\"${
+          JSON.parse(window.__adobe_cep__.getHostEnvironment()).appName
+        }\\"\\sPort\\=\\"(\\d*)`
+      );
+      return `http://localhost:${debug.data.match(port)[1]}`;
     }
   },
   watch: {
@@ -75,7 +90,7 @@ export default {
     }
   },
   mounted() {
-    this.app.menus = this;
+    this.init();
   },
   methods: {
     contextMenuClicked(id) {
@@ -83,7 +98,8 @@ export default {
       if (id == "refresh") {
         location.reload();
       } else if (id == "localhost") {
-        cep.util.openURLInDefaultBrowser(this.app.identity.localhost);
+        console.log(this.localhost);
+        cep.util.openURLInDefaultBrowser(this.localhost);
       }
     },
     flyoutMenuClicked(evt) {
@@ -94,14 +110,15 @@ export default {
       }
     },
     setContextMenu() {
-      this.app.csInterface.setContextMenuByJSON(
+      window.__adobe_cep__.invokeAsync(
+        "setContextMenuByJSON",
         JSON.stringify(this.context),
         this.contextMenuClicked
       );
     },
     setFlyoutMenu() {
-      this.app.csInterface.setPanelFlyoutMenu(this.flyoutMenu);
-      this.app.csInterface.addEventListener(
+      window.__adobe_cep__.invokeSync("setPanelFlyoutMenu", this.flyoutMenu);
+      window.__adobe_cep__.addEventListener(
         "com.adobe.csxs.events.flyoutMenuClicked",
         this.flyoutMenuClicked
       );
@@ -109,7 +126,12 @@ export default {
     init() {
       this.setContextMenu();
       this.setFlyoutMenu();
+      this.app.menus = this;
     }
   }
 };
 </script>
+
+<style>
+/* No need for CSS in this component */
+</style>

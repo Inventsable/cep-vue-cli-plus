@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "sign": "node ./src/utils/dev/signAndCertify.js init",
+    "switch": "node ./src/utils/dev/switchContext.js init"
   },
   "dependencies": {
     "@mdi/font": "^3.6.95",

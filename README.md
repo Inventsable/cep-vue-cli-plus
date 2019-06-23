@@ -29,6 +29,18 @@ yo cep-vue-cli
 
 ---
 
+## Commands
+
+This panel comes with 5 commands baked in ([see details here](https://github.com/Inventsable/CEP-Self-Signing-Panel#what-do-they-do)):
+
+- `npm run help` - A full list of the commands available and descriptions.
+- `npm run switch` - Reports whether in developer or production context and can switch automatically.
+- `npm run update` - Reports current version of panel in manifest and prompts to update Major, Minor, or Micro.
+- `npm run register` - Reports the current user data (if any) and prompts to save new info to be used in certificates.
+- `npm run sign` - Automatically stages and signs the extension, placing it in a `./archive` directory within the current panel.
+
+---
+
 ## Filetree for panel:
 
 Base panel results in clean and simple Single File Component infrastructure. `CSInterface` exists on the level of `App.vue` and is accessible anywhere via `this.app.csInterface` (`this.$root.$children[0].csInterface`).
@@ -59,6 +71,8 @@ Base panel results in clean and simple Single File Component infrastructure. `CS
 ---
 
 ## Contexts
+
+You can automate this by using `npm run switch`. In case you need to do it manually:
 
 ### For development
 
@@ -179,27 +193,6 @@ For the most part, you don't need to alter or modify any file/folder not shown b
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • You cannot change this from a `<div>` of `#app`. Add your own components inside it instead of modifying it directly.
 
 ---
-
-### When developing:
-
-```bash
-# Use this command inside the root of your project to launch the dev server
-npm run serve
-
-# This enables hot-reloading so your panel updates in real-time as you make changes to any included file.
-
-# Ensure that index-dev.html is your resource file inside ./CSXS/manifest.xml and relaunch extension
-```
-
-### To build:
-
-```bash
-# Use this command to create/overwrite the ./dist/ directory with a production build of your panel:
-npm run build
-
-# You must manually change to index.html in your ./CSXS/manifest.xml file and relaunch extension
-
-```
 
 ## Common errors:
 

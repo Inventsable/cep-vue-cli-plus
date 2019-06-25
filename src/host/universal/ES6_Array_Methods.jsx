@@ -3,7 +3,7 @@
 //
 Array.prototype.filter = function(param) {
   var filtered = [];
-  for (let i = 0; i < this.length; i++)
+  for (var i = 0; i < this.length; i++)
     if (param(this[i], i, this)) filtered.push(this[i]);
   return filtered;
 };

@@ -15,7 +15,7 @@
     "@mdi/font": "^3.6.95",
     "core-js": "^2.6.5",
     "lottie-web": "^5.5.3",
-    "types-for-adobe": "github:pravdomil/types-for-adobe",
+    "types-for-adobe": "github:ten-A/types-for-adobe",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuetify": "^1.5.5"
